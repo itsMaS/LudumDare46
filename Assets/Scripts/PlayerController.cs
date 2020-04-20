@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Knockable
 {
     public static PlayerController instance;
 
@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float wateringStrength;
 
-    enum Tools { WateringCan, Flamethrower, SeedPlanter, Laser, None}
-    Tools current = Tools.None;
+    public enum Tools { WateringCan, Flamethrower, SeedPlanter, Laser, None}
+    public static Tools current = Tools.None;
     bool drilling = false;
 
     Rigidbody2D rb;
@@ -92,19 +92,6 @@ public class PlayerController : MonoBehaviour
         //rb.MovePosition(transform.position + movementSpeed * new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") * 0.5f));
         rb.AddForce(movementSpeed * new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") * 0.5f));
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,10);
-
-        if(transform.position.x < HorizontalClamp.x || transform.position.x > HorizontalClamp.y)
-        {
-            Vector3 target = transform.position;
-            target.x = Mathf.Clamp(target.x, HorizontalClamp.x, HorizontalClamp.y);
-            rb.MovePosition(target);
-        }
-        if (transform.position.y < VerticalClamp.x || transform.position.y > VerticalClamp.y)
-        {
-            Vector3 target = transform.position;
-            target.y = Mathf.Clamp(target.y, VerticalClamp.x, VerticalClamp.y);
-            rb.MovePosition(target);
-        }
     }
     void SelectionControl()
     {
@@ -112,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
         drilling = Input.GetKey(KeyCode.Space);
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.mouseScrollDelta.y > 0)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             switch (current)
             {
@@ -130,7 +117,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q) || Input.mouseScrollDelta.y < 0)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             switch (current)
             {
@@ -235,7 +222,8 @@ public class PlayerController : MonoBehaviour
     public void GiveControl()
     {
         hasControl = true;
-        current = Tools.SeedPlanter;
+        current = Tools.Laser;
+        Debug.Log(Time.time);
     }
     public void TakeControl()
     {
@@ -250,5 +238,10 @@ public class PlayerController : MonoBehaviour
             Mathf.Lerp(VerticalClamp.x, VerticalClamp.y, 0.5f)),
             new Vector3(Mathf.Abs(HorizontalClamp.y - HorizontalClamp.x), Mathf.Abs(VerticalClamp.y - VerticalClamp.x)));
         Gizmos.DrawSphere(mousePosition, 0.2f);
+    }
+
+    public void Knock(Vector3 direction)
+    {
+        rb.AddForce(direction, ForceMode2D.Impulse);
     }
 }

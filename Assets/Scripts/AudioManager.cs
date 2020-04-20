@@ -134,6 +134,14 @@ public class AudioManager : MonoBehaviour
     {
         instance.StartFadeOutCor(source, time);
     }
+    public static void FadeIn(AudioSource source, float time, float targetVolume)
+    {
+        instance.StartFadeInCor(source, time, targetVolume);
+    }
+    void StartFadeInCor(AudioSource source, float time, float targetVolume)
+    {
+        StartCoroutine(FadeIn(time, targetVolume, source));
+    }
     void StartFadeOutCor(AudioSource source, float time)
     {
         StartCoroutine(FadeOut(time, source));
@@ -148,5 +156,18 @@ public class AudioManager : MonoBehaviour
             source.volume = Mathf.Lerp(startVolume,0,Mathf.InverseLerp(0, time, elapsed));
             yield return null;
         }
+        Destroy(source);
+    }
+    IEnumerator FadeIn(float time, float targetVolume, AudioSource source)
+    {
+        float startVolume = 0;
+        float elapsed = 0;
+        while (source && source.volume > 0)
+        {
+            elapsed += Time.deltaTime;
+            source.volume = Mathf.Lerp(startVolume, targetVolume, Mathf.InverseLerp(0, time, elapsed));
+            yield return null;
+        }
+        Destroy(source);
     }
 }

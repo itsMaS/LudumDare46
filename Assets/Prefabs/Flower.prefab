@@ -650,7 +650,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753578106256274339}
-  m_LocalRotation: {x: 0, y: 0, z: 0.00986895, w: 0.99995136}
+  m_LocalRotation: {x: 0, y: 0, z: -0.003402517, w: 0.9999942}
   m_LocalPosition: {x: 0.57388675, y: -0.00000003871094, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -775,8 +775,8 @@ MonoBehaviour:
   - {fileID: 753578108065596999}
   - {fileID: 753578107021262646}
   m_Bounds:
-    m_Center: {x: 0.1525867, y: 0.062219977, z: 0.00000047683716}
-    m_Extent: {x: 1.5740557, y: 1.9399018, z: 4.2632564e-14}
+    m_Center: {x: 0.14614451, y: 0.062373996, z: 0.00000047683716}
+    m_Extent: {x: 1.5676135, y: 1.9400558, z: 4.2632564e-14}
   m_UseBatching: 1
 --- !u!1 &753578106478754361
 GameObject:
@@ -972,6 +972,7 @@ GameObject:
   - component: {fileID: 753578106589506054}
   - component: {fileID: 753578106589506073}
   - component: {fileID: 753578106589506072}
+  - component: {fileID: 9172748413992249741}
   m_Layer: 10
   m_Name: Flower
   m_TagString: Untagged
@@ -1023,7 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterCapacity: 5
   dryingSpeed: 0.1
-  water: 0
+  water: 0.5
   waterIndication: {fileID: 1406266177}
   witherIndication: {fileID: 1112460801}
   flower: {fileID: 753578106307612724}
@@ -1031,6 +1032,11 @@ MonoBehaviour:
   IK: {fileID: 753578106510767545}
   witherThreshold: 5
   witherPos: {x: 1, y: 0.1, z: 0}
+  SeedGrowthColor: {r: 0.81960785, g: 0.6463595, b: 0.172549, a: 0.101960786}
+  WaterColor: {r: 0.5066543, g: 0.8207547, b: 0.17421682, a: 0.101960786}
+  SeedPrefab: {fileID: 3930632361761661394, guid: 77983442d391267429375d323e9180bc,
+    type: 3}
+  growthThreshold: 20
 --- !u!70 &753578106589506072
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,6 +1053,47 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03, y: 0.78}
   m_Size: {x: 1.15, y: 1.8}
   m_Direction: 0
+--- !u!114 &9172748413992249741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753578106589506075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.42462048, g: 0.7075472, b: 0.15686187, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000275229fb532c82b16f32b204fb3783bc
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 1.28
+  m_PointLightOuterRadius: 11.08
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &753578106608442014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1300,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753578106898095268}
-  m_LocalRotation: {x: 0, y: 0, z: 0.008139244, w: 0.9999669}
+  m_LocalRotation: {x: 0, y: 0, z: 0.005029922, w: 0.9999874}
   m_LocalPosition: {x: 0.510854, y: 0.00000005046115, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1468,7 +1515,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753578107467445521}
-  m_LocalRotation: {x: 0, y: 0, z: -0.013440657, w: 0.9999097}
+  m_LocalRotation: {x: 0, y: 0, z: -0.00522922, w: 0.9999864}
   m_LocalPosition: {x: 0.72634405, y: 0.000000026685903, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_Children:
@@ -1620,7 +1667,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753578107714050265}
-  m_LocalRotation: {x: 0, y: 0, z: -0.0057453485, w: -0.9999835}
+  m_LocalRotation: {x: 0, y: 0, z: -0.015519624, w: -0.9998796}
   m_LocalPosition: {x: 0.70174253, y: -0.000000117362426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

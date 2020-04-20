@@ -5,9 +5,13 @@ using UnityEngine;
 public class WateringCan : Tool
 {
     [SerializeField]
+    AnimationCurve strengthProgression;
+
+    [SerializeField]
     ContactFilter2D filter;
     [SerializeField]
     ParticleSystem ps;
+    public float wateringStrength = 1;
 
     public float waterAmount;
     public float maxWater;
@@ -25,7 +29,7 @@ public class WateringCan : Tool
         base.Using();
         if(leftClicked)
         {
-            if (waterAmount > 0)
+            if (waterAmount > 0 || true)
             {
                 waterAmount -= Time.deltaTime;
                 List<Collider2D> hits = new List<Collider2D>();
@@ -35,7 +39,7 @@ public class WateringCan : Tool
                     Waterable target = item.GetComponent<Waterable>();
                     if (target != null)
                     {
-                        target.Water(Time.deltaTime);
+                        target.Water(Time.deltaTime*wateringStrength);
                     }
                 }
                 ps.enableEmission = true;
@@ -52,15 +56,33 @@ public class WateringCan : Tool
         }
     }
 
+    public override void OnNextLevel(int level)
+    {
+        base.OnNextLevel(level);
+        wateringStrength = strengthProgression.Evaluate(level);
+    }
+
     public override void OnDeselect()
     {
         base.OnDeselect();
         ps.enableEmission = false;
-        Plant.ShowWater = false;
+        if (watering) AudioManager.FadeOut(watering, 1);
     }
     public override void OnSelect()
     {
         base.OnSelect();
-        Plant.ShowWater = true;
+    }
+
+    AudioSource watering;
+    public override void OnLeftClickBegin()
+    {
+        base.OnLeftClickBegin();
+        watering = AudioManager.Play("Robot/watering",0.5f,true);
+        
+    }
+    public override void OnLeftClickEnd()
+    {
+        if (watering) AudioManager.FadeOut(watering, 0.3f);
+        base.OnLeftClickEnd();
     }
 }

@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8497821246080187105}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4731,7 +4732,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1132251141
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4768,6 +4769,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527e08b83530ec14880b2be96ee015cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: {fileID: 8497821246080187109}
+  updateWhenDeselected: 0
+  strengthProgression:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 10
+      value: 10
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -4783,6 +4810,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   ps: {fileID: 4133281810564505256}
+  wateringStrength: 1
   waterAmount: 10
   maxWater: 50
 --- !u!60 &2736825539316442394
@@ -4814,3 +4842,220 @@ PolygonCollider2D:
       - {x: 0, y: -0.5}
       - {x: 11.940397, y: -6.401113}
       - {x: 12.559497, y: 2.8820376}
+--- !u!1001 &4521227862339538027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1864483140256793587}
+    m_Modifications:
+    - target: {fileID: 1739941193345611097, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_text
+      value: Watering can
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484445721860, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484505813550, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_text
+      value: Hold down left mouse button to water the plants
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633869, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialTool
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633870, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: headerName
+      value: Watering can
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427105484634633870, guid: e9cadbdd0c40bb144b064f3263385afb,
+        type: 3}
+      propertyPath: description
+      value: Hold down left mouse button to water the plants
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9cadbdd0c40bb144b064f3263385afb, type: 3}
+--- !u!224 &8497821246080187105 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5427105484634633866, guid: e9cadbdd0c40bb144b064f3263385afb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4521227862339538027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8497821246080187109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5427105484634633870, guid: e9cadbdd0c40bb144b064f3263385afb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4521227862339538027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a066988f252024eba7611c5cf549c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

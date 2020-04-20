@@ -21,6 +21,7 @@ public class Laser : Tool
     public float explosionForce;
     public AnimationCurve damageFalloff;
     public AnimationCurve knockBackFalloff;
+    public AnimationCurve laserCharge;
 
     Animator an;
     float charge = 0;
@@ -36,19 +37,28 @@ public class Laser : Tool
         an = GetComponent<Animator>();
     }
 
+    public override void OnNextLevel(int level)
+    {
+        base.OnNextLevel(level);
+        chargeSpeed = laserCharge.Evaluate(level);
+    }
+
     void Discharge()
     {
         AudioManager.Play("Robot/laser_shoot");
-        CameraController.ShakeCamera(1.5f,0.5f);
+        CameraController.ShakeCamera(1.0f,0.5f);
 
         StartCoroutine(Cooldown());
         List<Collider2D> hits = new List<Collider2D>();
         col.OverlapCollider(filter, hits);
+
+        int hitCount = 0;
         foreach (Collider2D item in hits)
         {
             Damagable target = item.GetComponent<Damagable>();
             if(target != null && !item.CompareTag("Player"))
             {
+                hitCount++;
                 target.DealDamage(damage*damageFalloff.Evaluate(Vector3.Distance(transform.position,item.transform.position)), item.transform.position - transform.position);
                 Rigidbody2D rb = GetComponentInParent<Rigidbody2D>();
                 if (rb)
@@ -57,6 +67,23 @@ public class Laser : Tool
                 }
             }
         }
+
+        switch (hitCount)
+        {
+            case 0:
+            case 1:
+                break;
+            case 2:
+                GameManager.MakePopup("Double kill", transform.position);
+                break;
+            case 3:
+                GameManager.MakePopup("Triple kill", transform.position);
+                break;
+            default:
+                GameManager.MakePopup("Multi kill : "+ hitCount, transform.position);
+                break;
+        }
+
         if(dischargeParticle)
         {
             Instantiate(dischargeParticle,transform.position,Quaternion.identity);
@@ -66,11 +93,14 @@ public class Laser : Tool
         Physics2D.OverlapCircle(transform.position, 10, filter, hits);
         foreach (Collider2D item in hits)
         {
-            Rigidbody2D rb;
-            if((rb = item.attachedRigidbody))
+            Knockable knock = null;
+            if (item.attachedRigidbody)
+                knock = item.attachedRigidbody.GetComponent<Knockable>();
+            if(knock != null)
             {
-                rb.AddForce(knockBackFalloff.Evaluate(Vector3.Distance(item.transform.position, transform.position)) 
-                    * (item.transform.position - transform.position).normalized * explosionForce, ForceMode2D.Impulse);
+                //rb.AddForce(knockBackFalloff.Evaluate(Vector3.Distance(item.transform.position, transform.position)) 
+                //  * (item.transform.position - transform.position).normalized * explosionForce, ForceMode2D.Impulse);
+                knock.Knock(knockBackFalloff.Evaluate(Vector3.Distance(item.transform.position, transform.position)) * (item.transform.position - transform.position).normalized * explosionForce);
                 //rb.AddForceAtPosition((item.transform.position - transform.position).normalized * explosionForce, transform.position,ForceMode2D.Impulse);
                 Debug.DrawLine(item.transform.position, transform.position,Color.red,5);
                 Debug.DrawLine(item.transform.position, knockBackFalloff.Evaluate(Vector3.Distance(item.transform.position, transform.position))

@@ -1156,7 +1156,11 @@ public class LeanTween : MonoBehaviour {
     * LeanTween.alphaCanvas(gameObject.GetComponent&lt;RectTransform&gt;(), 0f, 1f) .setLoopPingPong();
     */  
     public static LTDescr alphaCanvas(CanvasGroup canvasGroup, float to, float time){
-        return pushNewTween(canvasGroup.gameObject, new Vector3(to,0,0), time, options().setCanvasGroupAlpha());
+        if(!canvasGroup)
+        {
+            return null;
+        }
+        return pushNewTween(canvasGroup.gameObject, new Vector3(to, 0, 0), time, options().setCanvasGroupAlpha());
     }
     #endif
 

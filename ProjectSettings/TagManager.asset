@@ -18,7 +18,7 @@ TagManager:
   - Base
   - Body
   - Plant
-  - 
+  - Seed
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2978098259
+    locked: 0
+  - name: Bees
+    uniqueID: 78787183
     locked: 0
   - name: Effects
     uniqueID: 3162716155

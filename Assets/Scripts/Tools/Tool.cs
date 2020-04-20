@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Tool : MonoBehaviour
 {
+
+    [SerializeField]
+    TutorialWindow tutorial;
+
     static Tool selected;
     [SerializeField]
     bool updateWhenDeselected = false;
@@ -11,17 +15,32 @@ public class Tool : MonoBehaviour
     protected bool leftClicked;
     protected bool rightClicked;
     protected Vector3 mousePos;
+
+    private void Start()
+    {
+        GameManager.LevelProgressed += OnNextLevel;
+    }
+    private void Awake()
+    {
+        selected = null;
+    }
     public void SelectTool()
     {
         if(this != selected)
         {
             if(selected)
             {
+                if (selected.tutorial) selected.tutorial.EnableLocal(false);
                 selected.OnDeselect();
             }
             selected = this;
             OnSelect();
+            if (tutorial) tutorial.EnableLocal(true);
         }
+    }
+    public virtual void OnNextLevel(int level)
+    {
+
     }
     public virtual void OnSelect()
     {

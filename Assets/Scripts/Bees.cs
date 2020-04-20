@@ -48,6 +48,7 @@ public class Bees : MonoBehaviour, Damagable
     private void Start()
     {
         StartCoroutine(SearchForPlants());
+        AudioManager.Play("buzz",1,true,gameObject);
     }
 
     private void Update()
@@ -80,6 +81,7 @@ public class Bees : MonoBehaviour, Damagable
 
     public void DealDamage(float amount, Vector3 direction)
     {
+        AudioManager.Play("swarmDie",1f);
         an.SetTrigger("Die");
     }
 
