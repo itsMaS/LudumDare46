@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Plant : MonoBehaviour, Waterable, Burnable, Damagable
+public class Plant : MonoBehaviour, Waterable, Burnable, Damagable, Swarmable
 {
     public static bool ShowWater = false;
 
@@ -102,5 +102,10 @@ public class Plant : MonoBehaviour, Waterable, Burnable, Damagable
         flower.color = witheredColor;
         witherIndication.gameObject.SetActive(false);
         Destroy(this);
+    }
+
+    public void Swarm(Transform swarmer, float strength)
+    {
+        water = Mathf.Max(water - Time.deltaTime*strength, 0);
     }
 }

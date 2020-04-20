@@ -105,17 +105,18 @@ public class Laser : Tool
         base.OnDeselect();
         beam.SetActive(false);
     }
-    public override void OnLeftClickBegin()
-    {
-        base.OnLeftClickBegin();
-        chargeSound = AudioManager.Play("Robot/laser_charge");
-    }
     public override void Using()
     {
         base.Using();
         if (leftClicked && cooled)
         {
             base.OnLeftClick();
+            if(!chargeStart)
+            {
+                chargeStart = true;
+                chargeSound = AudioManager.Play("Robot/laser_charge");
+            }
+
             charge += chargeSpeed * Time.deltaTime;
             CameraController.ShakeCamera(0.3f * Mathf.InverseLerp(0, chargeTime, charge));
             if (charge >= chargeTime)

@@ -59,7 +59,6 @@ public class Tool : MonoBehaviour
     {
 
     }
-
     public virtual void Update()
     {
         mousePos = PlayerController.mousePosition;
